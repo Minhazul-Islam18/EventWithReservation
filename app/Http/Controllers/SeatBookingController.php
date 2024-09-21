@@ -57,6 +57,7 @@ class SeatBookingController extends Controller
             // Return a successful response with the booked seats
             return to_route('admin.events.details', ['event' => $event->id])->with('success', 'Booking successfull');
         } catch (\Exception $e) {
+            dd($e->getMessage());
             // Handle the case where seats are already booked
             return back()->with(
                 'warning',

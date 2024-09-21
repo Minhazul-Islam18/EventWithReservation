@@ -4,6 +4,7 @@ import { Link, usePage } from "@inertiajs/react";
 import AnimateHeight from "react-animate-height";
 import PerfectScrollbar from "react-perfect-scrollbar";
 import { useTranslation } from "react-i18next";
+import { IconCalendarClock, IconChevronRight } from "@tabler/icons-react";
 
 function Sidebar({ handleToggleSidebar }) {
     const { base_url, permissions } = usePage().props;
@@ -102,7 +103,65 @@ function Sidebar({ handleToggleSidebar }) {
                             <div className="mt-2 mb-2"></div>
                             <li className="nav-item">
                                 <ul>
-                                    <li className="nav-item">
+                                    <li className="menu nav-item">
+                                        <button
+                                            type="button"
+                                            className={`${
+                                                currentMenu === "events"
+                                                    ? "active"
+                                                    : ""
+                                            } nav-link group w-full`}
+                                            onClick={() => toggleMenu("events")}
+                                        >
+                                            <div className="flex items-center">
+                                                <IconCalendarClock
+                                                    height={20}
+                                                    width={20}
+                                                />
+
+                                                <span className="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">
+                                                    {t("Events")}
+                                                </span>
+                                            </div>
+
+                                            <div
+                                                className={
+                                                    currentMenu === "events"
+                                                        ? "rotate-90"
+                                                        : "rtl:rotate-180"
+                                                }
+                                            >
+                                                <IconChevronRight />
+                                            </div>
+                                        </button>
+
+                                        <AnimateHeight
+                                            duration={300}
+                                            height={
+                                                currentMenu === "events"
+                                                    ? "auto"
+                                                    : 0
+                                            }
+                                        >
+                                            <ul className="sub-menu text-gray-500">
+                                                <li>
+                                                    <Link
+                                                        href={`${base_url}/admin/events/create`}
+                                                    >
+                                                        {t("Create new Event")}
+                                                    </Link>
+                                                </li>
+                                                <li>
+                                                    <Link
+                                                        href={`${base_url}/admin/events`}
+                                                    >
+                                                        {t("All Events")}
+                                                    </Link>
+                                                </li>
+                                            </ul>
+                                        </AnimateHeight>
+                                    </li>
+                                    {/* <li className="nav-item">
                                         <Link
                                             href={`${base_url}/admin/dashboard`}
                                             className="group"
@@ -214,7 +273,7 @@ function Sidebar({ handleToggleSidebar }) {
                                                 </span>
                                             </div>
                                         </Link>
-                                    </li>
+                                    </li> */}
                                     <li className="nav-item">
                                         <Link
                                             href={`${base_url}/admin/general-settings`}

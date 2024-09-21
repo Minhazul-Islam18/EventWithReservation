@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { router, usePage } from "@inertiajs/react";
 import MainLayout from "../../Layout/Mainlayout";
 import { useForm } from "react-hook-form";
 
 const EventForm = () => {
-    const { event } = usePage().props || {}; // Ensure that event is undefined in create mode
+    const { event } = usePage().props || {};
     const isEditMode = Boolean(event);
+    const [hasBookedSeats, setHasBookedSeats] = useState(false);
 
     // React Hook Form setup
     const {
@@ -22,6 +23,16 @@ const EventForm = () => {
             available_seats: event?.available_seats || "",
         },
     });
+
+    useEffect(() => {
+        // Check if any seats are booked
+        if (
+            event?.seats &&
+            event.seats.some((seat) => seat.status === "booked")
+        ) {
+            setHasBookedSeats(true);
+        }
+    }, [event]);
 
     const onSubmit = (data) => {
         if (isEditMode) {
@@ -96,6 +107,7 @@ const EventForm = () => {
                         {...register("total_seats", {
                             required: "Total seats is required",
                         })}
+                        disabled={hasBookedSeats} // Disable if seats are booked
                     />
                     {errors.total_seats && (
                         <div className="text-red-500">
@@ -104,9 +116,9 @@ const EventForm = () => {
                     )}
                 </div>
 
-                {isEditMode && (
+                {/* Available Seats */}
+                {/* {isEditMode && (
                     <>
-                        {/* Available Seats */}
                         <div className="mb-4">
                             <label className="block text-gray-700">
                                 Available Seats
@@ -117,6 +129,7 @@ const EventForm = () => {
                                 {...register("available_seats", {
                                     required: "Available seats is required",
                                 })}
+                                readOnly={hasBookedSeats} // Make read-only if seats are booked
                             />
                             {errors.available_seats && (
                                 <div className="text-red-500">
@@ -125,7 +138,7 @@ const EventForm = () => {
                             )}
                         </div>
                     </>
-                )}
+                )} */}
                 <button
                     type="submit"
                     className="px-4 py-2 bg-blue-500 text-white rounded-lg"

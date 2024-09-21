@@ -20,4 +20,14 @@ class Event extends Model
     {
         return $this->hasMany(EventSeat::class);
     }
+
+    /**
+     * Check if any seats are booked for the event.
+     *
+     * @return bool
+     */
+    public function hasBookedSeats()
+    {
+        return $this->seats()->where('status', 'booked')->exists();
+    }
 }

@@ -77,30 +77,35 @@ class EventController extends Controller
             'title' => 'required|string|max:255',
             'description' => 'required|string',
             'event_date' => 'required|date',
-            'total_seats' => 'required|integer|min:1',
+            'total_seats' => 'nullable|integer|min:1',
         ]);
 
-        // Start a transaction
         DB::transaction(function () use ($validated, $event) {
-            // Update the event details
+            // Check if any seats are booked
+            $hasBookedSeats = $event->seats()->where('status', 'booked')->exists();
+
+            // Only update total_seats if no seats are booked
+            if (!$hasBookedSeats) {
+                $event->total_seats = $validated['total_seats'];
+                $event->save();
+            }
+
+            // Update other event details
             $event->update($validated);
 
             // Update seats if total_seats have changed
             $currentTotalSeats = $event->seats()->count();
-            $newTotalSeats = $validated['total_seats'];
+            $newTotalSeats = $validated['total_seats'] ?? $currentTotalSeats;
 
             if ($newTotalSeats > $currentTotalSeats) {
-                // Create new seats if the new total exceeds the current total
                 for ($i = $currentTotalSeats + 1; $i <= $newTotalSeats; $i++) {
                     EventSeat::create([
                         'event_id' => $event->id,
                         'seat_number' => $i,
-                        'status' => 'available', // New seats are available
+                        'status' => 'available',
                     ]);
                 }
             } elseif ($newTotalSeats < $currentTotalSeats) {
-                // Optionally handle removing excess seats if necessary
-                // E.g., mark them as unavailable or delete them
                 $seatsToRemove = $currentTotalSeats - $newTotalSeats;
                 EventSeat::where('event_id', $event->id)
                     ->orderBy('seat_number', 'desc')
