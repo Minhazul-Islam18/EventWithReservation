@@ -10,9 +10,10 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use Spatie\Permission\Models\Permission;
+
 class Admin extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable,HasRoles;
+    use HasApiTokens, HasFactory, Notifiable, HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -20,13 +21,11 @@ class Admin extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'company_id',
         'username',
         'first_name',
         'last_name',
         'email',
         'status',
-        'machine_user_id',
         'mobile',
         'gender',
         'date_of_birth',
@@ -61,12 +60,12 @@ class Admin extends Authenticatable
     }
     public static function groupByName()
     {
-        $group_by_name= Permission::select('group_name')->groupBy('group_name')->get();
+        $group_by_name = Permission::select('group_name')->groupBy('group_name')->get();
         return $group_by_name;
     }
     public static function getPermissionsByGroupName($group_name)
     {
-        $permissions =Permission::select('name', 'id')->where('group_name', $group_name)->get();
+        $permissions = Permission::select('name', 'id')->where('group_name', $group_name)->get();
         return $permissions;
     }
     public static function roleHasPermissions($role, $permissions)
@@ -80,5 +79,4 @@ class Admin extends Authenticatable
         }
         return $hasPermission;
     }
-
 }
