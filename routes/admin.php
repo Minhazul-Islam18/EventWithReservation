@@ -1,20 +1,21 @@
 <?php
 
 
-use App\Http\Controllers\Admin\AuthController;
-use App\Http\Controllers\Admin\CurrencyController;
-use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Admin\ExtraController;
-use App\Http\Controllers\Admin\GeneralSettingsController;
-use App\Http\Controllers\Admin\LanguageController;
-use App\Http\Controllers\Admin\RolePermissionController;
-use App\Http\Controllers\Admin\AdminProfileController;
-use App\Http\Controllers\Admin\SocialLinkController;
-use App\Http\Controllers\Admin\TaskController;
-
-
-use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EventController;
+use App\Http\Controllers\Admin\AuthController;
+use App\Http\Controllers\Admin\TaskController;
+use App\Http\Controllers\Admin\ExtraController;
+use App\Http\Controllers\Admin\CurrencyController;
+use App\Http\Controllers\Admin\LanguageController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\SocialLinkController;
+
+
+use App\Http\Controllers\Admin\AdminProfileController;
+use App\Http\Controllers\Admin\RolePermissionController;
+use App\Http\Controllers\Admin\GeneralSettingsController;
 
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/login', [AuthController::class, 'loginPost'])->name('login.post');
@@ -27,6 +28,13 @@ Route::group(['middleware' => ['auth:admin'], 'as' => 'admin.'], function () {
         });
     });
 
+    Route::get('/events', [EventController::class, 'index'])->name('events.index');
+    Route::get('/events/create', [EventController::class, 'create'])->name('events.create');
+    Route::post('/events/store', [EventController::class, 'store'])->name('events.store');
+    Route::put('/events/{event}/update', [EventController::class, 'update'])->name('events.update');
+    Route::get('/events/{event}/edit', [EventController::class, 'edit'])->name('events.edit');
+    Route::get('/events/{event}/details', [EventController::class, 'show'])->name('events.details');
+    Route::delete('/events/{event}', [EventController::class, 'destroy'])->name('events.destroy');
 
     Route::get('/error', [DashboardController::class, 'error'])->name('error');
     Route::get('dashboard', [DashboardController::class, 'adminDashboard'])->name('dashboard');
