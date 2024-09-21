@@ -23,11 +23,6 @@ class SeatBookingController extends Controller
             'seats.*' => 'exists:event_seats,seat_number',
         ]);
 
-        // dd([
-        //     'event_id' => $eventId,
-        //     'user_id' => auth()->id(),
-        //     'seats' => json_encode($request->seats),
-        // ]);
         $event = Event::findOrFail($eventId);
 
         try {
@@ -62,11 +57,11 @@ class SeatBookingController extends Controller
             // Return a successful response with the booked seats
             return to_route('admin.events.details', ['event' => $event->id])->with('success', 'Booking successfull');
         } catch (\Exception $e) {
-            dd($e->getMessage());
             // Handle the case where seats are already booked
-            return response()->json([
-                'message' => $e->getMessage(),
-            ], 409);
+            return back()->with(
+                'warning',
+                $e->getMessage()
+            );
         }
     }
 }
