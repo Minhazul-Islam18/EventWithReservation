@@ -19,15 +19,14 @@ const EventForm = () => {
             description: event?.description || "",
             event_date: event?.event_date || "",
             total_seats: event?.total_seats || "",
+            available_seats: event?.available_seats || "",
         },
     });
 
     const onSubmit = (data) => {
         if (isEditMode) {
-            // Use PUT request for editing an existing event
             router.put(`/admin/events/${event?.id}/update`, data);
         } else {
-            // Use POST request for creating a new event
             router.post("/admin/events/store", data);
         }
     };
@@ -105,6 +104,28 @@ const EventForm = () => {
                     )}
                 </div>
 
+                {isEditMode && (
+                    <>
+                        {/* Available Seats */}
+                        <div className="mb-4">
+                            <label className="block text-gray-700">
+                                Available Seats
+                            </label>
+                            <input
+                                type="number"
+                                className="w-full px-4 py-2 border rounded-lg"
+                                {...register("available_seats", {
+                                    required: "Available seats is required",
+                                })}
+                            />
+                            {errors.available_seats && (
+                                <div className="text-red-500">
+                                    {errors.available_seats.message}
+                                </div>
+                            )}
+                        </div>
+                    </>
+                )}
                 <button
                     type="submit"
                     className="px-4 py-2 bg-blue-500 text-white rounded-lg"
