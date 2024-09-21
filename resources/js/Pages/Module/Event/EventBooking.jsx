@@ -16,19 +16,17 @@ const SeatBooking = () => {
         }
     };
 
-    // Submit the reservation
     const handleReservation = () => {
-        if (selectedSeats.length === 0) {
-            alert("Please select at least one seat!");
+        if (!selectedSeats.length) {
+            alert("Please select at least one seat.");
             return;
         }
-
-        // Add your reservation submission logic here (e.g., API call)
-        console.log("Selected seats:", selectedSeats);
         router.post(`/admin/events/${event.id}/reserve`, {
             seats: selectedSeats,
         });
+        setSelectedSeats([]);
     };
+
     return (
         <div className="max-w-2xl mx-auto">
             <h1 className="text-3xl font-bold mb-6">Seat Reservation</h1>
