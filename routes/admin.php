@@ -7,12 +7,13 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\TaskController;
 use App\Http\Controllers\Admin\ExtraController;
+use App\Http\Controllers\SeatBookingController;
 use App\Http\Controllers\Admin\CurrencyController;
 use App\Http\Controllers\Admin\LanguageController;
 use App\Http\Controllers\Admin\DashboardController;
+
+
 use App\Http\Controllers\Admin\SocialLinkController;
-
-
 use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Admin\RolePermissionController;
 use App\Http\Controllers\Admin\GeneralSettingsController;
@@ -35,6 +36,7 @@ Route::group(['middleware' => ['auth:admin'], 'as' => 'admin.'], function () {
     Route::get('/events/{event}/edit', [EventController::class, 'edit'])->name('events.edit');
     Route::get('/events/{event}/details', [EventController::class, 'show'])->name('events.details');
     Route::delete('/events/{event}', [EventController::class, 'destroy'])->name('events.destroy');
+    Route::post('/events/{id}/reserve', [SeatBookingController::class, 'reserve'])->name('seats.reserve');
 
     Route::get('/error', [DashboardController::class, 'error'])->name('error');
     Route::get('dashboard', [DashboardController::class, 'adminDashboard'])->name('dashboard');

@@ -19,7 +19,6 @@ const EventForm = () => {
             description: event?.description || "",
             event_date: event?.event_date || "",
             total_seats: event?.total_seats || "",
-            available_seats: event?.available_seats || "",
         },
     });
 
@@ -102,25 +101,6 @@ const EventForm = () => {
                     {errors.total_seats && (
                         <div className="text-red-500">
                             {errors.total_seats.message}
-                        </div>
-                    )}
-                </div>
-
-                {/* Available Seats */}
-                <div className="mb-4">
-                    <label className="block text-gray-700">
-                        Available Seats
-                    </label>
-                    <input
-                        type="number"
-                        className="w-full px-4 py-2 border rounded-lg"
-                        {...register("available_seats", {
-                            required: "Available seats is required",
-                        })}
-                    />
-                    {errors.available_seats && (
-                        <div className="text-red-500">
-                            {errors.available_seats.message}
                         </div>
                     )}
                 </div>

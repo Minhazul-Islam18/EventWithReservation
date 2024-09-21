@@ -10,4 +10,14 @@ class Event extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
+
+    /**
+     * Get all of the comments for the Event
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function seats()
+    {
+        return $this->hasMany(EventSeat::class);
+    }
 }
