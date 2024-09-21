@@ -17,7 +17,7 @@ const Details = () => {
             <p>{event?.description}</p>
 
             {/* Event Date */}
-            <span className="block">
+            <span className="flex items-center justify-start">
                 <IconCalendar />
                 {event?.event_date}
             </span>
@@ -37,7 +37,7 @@ const Details = () => {
 Details.layout = (page) => (
     <MainLayout
         children={page}
-        title={page.props.event ? "Edit Event" : "Create Event"}
+        title={`Event details || ${page.props.event?.title}`}
     />
 );
 
