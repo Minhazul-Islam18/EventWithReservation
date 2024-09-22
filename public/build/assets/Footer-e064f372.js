@@ -1,0 +1,1 @@
+import{j as t}from"./app-a4684c59.js";function r(){return t.jsxs("div",{className:"dark:text-white-dark text-center ltr:sm:text-left rtl:sm:text-right p-6 mt-auto",children:["© ",new Date().getFullYear(),". Event reservation All rights reserved."]})}export{r as default};
