@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { themeConfig } from "../../Store/ThemeConfig.js";
 import { router, usePage } from "@inertiajs/react";
-import { Head } from "@inertiajs/react";
+import { Head } from '@inertiajs/react'
 import Swal from "sweetalert2";
 function Login() {
+
     const { errors } = usePage().props;
     const [values, setValues] = useState({
         email: "",
@@ -20,8 +21,8 @@ function Login() {
     }
 
     function submitForm(e) {
-        e.preventDefault();
-        router.post("/admin/login", values);
+        e.preventDefault()
+        router.post('/admin/login', values)
     }
     return (
         <>
@@ -34,9 +35,7 @@ function Login() {
                 />
             </div>
 
-            <div
-                className={`relative flex min-h-screen items-center justify-center bg-cover bg-center bg-no-repeat px-6 py-10 dark:bg-[#060818] sm:px-16`}
-            >
+            <div className={`relative flex min-h-screen items-center justify-center bg-cover bg-center bg-no-repeat px-6 py-10 dark:bg-[#060818] sm:px-16`}>
                 <img
                     src="/assets/images/auth/map.png"
                     alt="image"
@@ -67,7 +66,7 @@ function Login() {
                         <div className="mx-auto w-full max-w-[440px]">
                             <div className="mb-10">
                                 <h1 className="text-3xl font-extrabold uppercase !leading-snug text-primary md:text-2xl">
-                                    Event reservation
+                                    Luminous E-Shop
                                 </h1>
                                 <p className="text-base font-bold leading-normal text-white-dark">
                                     Enter your email and password to login
@@ -108,11 +107,7 @@ function Login() {
                                             </svg>
                                         </span>
                                     </div>
-                                    {errors.email && (
-                                        <div className="text-red-600 text-[14px]">
-                                            {errors.email}
-                                        </div>
-                                    )}
+                                    {errors.email && <div className="text-red-600 text-[14px]">{errors.email}</div>}
                                 </div>
                                 <div>
                                     <label>Password</label>
@@ -156,12 +151,9 @@ function Login() {
                                                 />
                                             </svg>
                                         </span>
+
                                     </div>
-                                    {errors.password && (
-                                        <div className="text-red-600 text-[14px]">
-                                            {errors.password}
-                                        </div>
-                                    )}
+                                    {errors.password && <div className="text-red-600 text-[14px]">{errors.password}</div>}
                                 </div>
 
                                 <button

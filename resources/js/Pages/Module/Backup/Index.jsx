@@ -39,10 +39,7 @@ function Index() {
                 </div>
                 <ul className="flex space-x-2 rtl:space-x-reverse">
                     <li>
-                        <Link
-                            href="#"
-                            className="text-[#FF6243] hover:underline text-base"
-                        >
+                        <Link href="#" className="text-[#FF6243] hover:underline text-base">
                             Backup File and Database
                         </Link>
                     </li>
@@ -53,21 +50,11 @@ function Index() {
                         method="get"
                         className="flex items-center px-7 py-2 bg-[#ff6243] text-white rounded-md text-[15px] shadow-lg transition-transform transform-gpu hover:scale-105"
                     >
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="24px"
-                            height="24px"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            stroke-width="1.5"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            className="h-5 w-5 shrink-0 ltr:mr-2 rtl:ml-2"
-                        >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" className="h-5 w-5 shrink-0 ltr:mr-2 rtl:ml-2">
                             <line x1="12" y1="5" x2="12" y2="19"></line>
                             <line x1="5" y1="12" x2="19" y2="12"></line>
                         </svg>
+
                         Backup
                     </Link>
                 </div>
@@ -80,79 +67,46 @@ function Index() {
                             <table>
                                 <thead>
                                     <tr>
-                                        <th className="ltr:rounded-l-md rtl:rounded-r-md">
-                                            File
-                                        </th>
-                                        <th className="ltr:rounded-l-md rtl:rounded-r-md">
-                                            Size
-                                        </th>
-                                        <th className="ltr:rounded-l-md rtl:rounded-r-md">
-                                            Date
-                                        </th>
-                                        <th className="ltr:rounded-l-md rtl:rounded-r-md">
-                                            Age
-                                        </th>
-                                        <th className="ltr:rounded-l-md rtl:rounded-r-md">
-                                            Action
-                                        </th>
+                                        <th className="ltr:rounded-l-md rtl:rounded-r-md">File</th>
+                                        <th className="ltr:rounded-l-md rtl:rounded-r-md">Size</th>
+                                        <th className="ltr:rounded-l-md rtl:rounded-r-md">Date</th>
+                                        <th className="ltr:rounded-l-md rtl:rounded-r-md">Age</th>
+                                        <th className="ltr:rounded-l-md rtl:rounded-r-md">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {backups?.map((backup, index) => (
-                                        <tr
-                                            key={index}
-                                            className="text-white-dark hover:text-black dark:hover:text-white-light/90 group"
-                                        >
+                                        <tr key={index} className="text-white-dark hover:text-black dark:hover:text-white-light/90 group">
                                             <td className="min-w-[150px] text-black dark:text-white">
                                                 <div className="flex items-center">
-                                                    <span className="whitespace-nowrap">
-                                                        {backup["file_name"]}
-                                                    </span>
+                                                    <span className="whitespace-nowrap">{backup['file_name']}</span>
                                                 </div>
                                             </td>
                                             <td className="min-w-[150px] text-black dark:text-white">
                                                 <div className="flex items-center">
-                                                    <span className="whitespace-nowrap">
-                                                        {backup["file_size"]}
-                                                    </span>
+                                                    <span className="whitespace-nowrap">{backup['file_size']}</span>
                                                 </div>
                                             </td>
                                             <td className="min-w-[150px] text-black dark:text-white">
                                                 <div className="flex items-center">
-                                                    <span className="whitespace-nowrap">
-                                                        {backup["date_created"]}
-                                                    </span>
+                                                    <span className="whitespace-nowrap">{backup['date_created']}</span>
                                                 </div>
                                             </td>
                                             <td className="min-w-[150px] text-black dark:text-white">
                                                 <div className="flex items-center">
-                                                    <span className="whitespace-nowrap">
-                                                        {backup["date_ago"]}
-                                                    </span>
+                                                    <span className="whitespace-nowrap">{backup['date_ago']}</span>
                                                 </div>
                                             </td>
                                             <td className="min-w-[150px] text-black dark:text-white">
                                                 <div className="flex items-center gap-2">
                                                     <a
-                                                        href={
-                                                            `${base_url}/admin/backup/download/` +
-                                                            backup["file_name"]
-                                                        }
+                                                        href={`${base_url}/admin/backup/download/` + backup['file_name']}
                                                         method="get"
                                                         className="btn btn-sm btn-outline-primary"
                                                     >
                                                         Download
                                                     </a>
-                                                    <button
-                                                        onClick={() =>
-                                                            handleDeleteClick(
-                                                                backup[
-                                                                    "file_name"
-                                                                ]
-                                                            )
-                                                        }
-                                                        className="btn btn-sm btn-outline-danger"
-                                                    >
+                                                    <button onClick={() => handleDeleteClick(backup['file_name'])} className="btn btn-sm btn-outline-danger">
                                                         Delete
                                                     </button>
                                                 </div>
@@ -166,15 +120,11 @@ function Index() {
                 </div>
             </div>
 
-            <DeleteModal
-                isDeleteNoteModal={isDeleteNoteModal}
-                setIsDeleteNoteModal={setIsDeleteNoteModal}
-                fileToDelete={fileToDelete}
-                name={"Backup"}
-                route="backup"
-            ></DeleteModal>
+            <DeleteModal isDeleteNoteModal={isDeleteNoteModal} setIsDeleteNoteModal={setIsDeleteNoteModal} fileToDelete={fileToDelete} name={"Backup"} route="backup"></DeleteModal>
         </>
     );
 }
-Index.layout = (page) => <MainLayout children={page} title="x || BackUp" />;
+Index.layout = (page) => (
+    <MainLayout children={page} title="Luminous-Ecommerce || BackUp" />
+);
 export default Index;

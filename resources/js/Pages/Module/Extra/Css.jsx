@@ -3,14 +3,10 @@ import MainLayout from "../../Layout/Mainlayout";
 import { Link, router, usePage } from "@inertiajs/react";
 import { useForm } from "react-hook-form";
 
+
 function Index() {
     const { file_content } = usePage().props;
-    const {
-        register,
-        handleSubmit,
-        setValue,
-        formState: { errors },
-    } = useForm({
+    const { register, handleSubmit, setValue, formState: { errors } } = useForm({
         defaultValues: {
             file_content: file_content,
         },
@@ -49,10 +45,7 @@ function Index() {
                 </div>
                 <ul className="flex space-x-2 rtl:space-x-reverse">
                     <li className="table-list-title">
-                        <Link
-                            href="#"
-                            className="text-[#FF6243] hover:underline text-base"
-                        >
+                        <Link href="#" className="text-[#FF6243] hover:underline text-base">
                             Custom Css Style
                         </Link>
                     </li>
@@ -64,8 +57,7 @@ function Index() {
                     <div className="mb-5">
                         <form
                             className="space-y-5"
-                            onSubmit={handleSubmit(onSubmit)}
-                            method="post"
+                            onSubmit={handleSubmit(onSubmit)} method="post"
                         >
                             <div className="grid grid-cols-1 sm:grid-cols-1 gap-4">
                                 <div>
@@ -90,6 +82,6 @@ function Index() {
     );
 }
 
-Index.layout = (page) => <MainLayout children={page} title="X || Extra" />;
+Index.layout = (page) => <MainLayout children={page} title="Luminous-Ecommerce || Extra" />;
 
 export default Index;
