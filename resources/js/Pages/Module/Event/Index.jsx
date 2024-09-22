@@ -60,6 +60,6 @@ const EventList = ({ events }) => {
     );
 };
 EventList.layout = (page) => (
-    <MainLayout children={page} title="Luminous E-shop || Edit Permission" />
+    <MainLayout children={page} title="Event reservation || Edit Permission" />
 );
 export default EventList;

@@ -3,12 +3,9 @@ import MainLayout from "../../Layout/Mainlayout";
 import { Link, router, usePage } from "@inertiajs/react";
 import { useForm } from "react-hook-form";
 
-
 function Add() {
     const { base_url, errors, permissions } = usePage().props;
     const { register, handleSubmit } = useForm();
-
-
 
     const [selectAllChecked, setSelectAllChecked] = useState(false);
     const [checkedItems, setCheckedItems] = useState({});
@@ -101,7 +98,9 @@ function Add() {
                 }
             });
         });
-        const permissionIds = selectedPermissions.map(permission => permission.id);
+        const permissionIds = selectedPermissions.map(
+            (permission) => permission.id
+        );
 
         const requestData = {
             role: data.role,
@@ -138,7 +137,10 @@ function Add() {
                 </div>
                 <ul className="flex items-center space-x-2 rtl:space-x-reverse">
                     <li>
-                        <Link href={`${base_url}/admin/role-permission`} className="text-[19px] text-[#ff6243] font-bold  hover:underline">
+                        <Link
+                            href={`${base_url}/admin/role-permission`}
+                            className="text-[19px] text-[#ff6243] font-bold  hover:underline"
+                        >
                             Dashboard
                         </Link>
                     </li>
@@ -158,17 +160,30 @@ function Add() {
                         </h5>
                     </div>
                     <div className="mb-5">
-                        <form className="space-y-5" onSubmit={handleSubmit(onSubmit)} method="post">
+                        <form
+                            className="space-y-5"
+                            onSubmit={handleSubmit(onSubmit)}
+                            method="post"
+                        >
                             <div className="grid grid-cols-1 sm:grid-cols-1 gap-4">
                                 <div>
-                                    <label>Role Name <span className="text-[12px] text-red-700">*</span></label>
+                                    <label>
+                                        Role Name{" "}
+                                        <span className="text-[12px] text-red-700">
+                                            *
+                                        </span>
+                                    </label>
                                     <input
                                         {...register("role")}
                                         type="text"
                                         className="form-input"
                                         placeholder="Enter Role Name"
                                     />
-                                    {errors.first_name && <p className="text-red-600 pt-2">{errors.first_name}</p>}
+                                    {errors.first_name && (
+                                        <p className="text-red-600 pt-2">
+                                            {errors.first_name}
+                                        </p>
+                                    )}
                                 </div>
                             </div>
                             <hr />
@@ -182,9 +197,13 @@ function Add() {
                                                     className="form-checkbox text-dark rounded-full"
                                                     id="selectAll"
                                                     checked={selectAllChecked}
-                                                    onChange={handleSelectAllCheckboxChange}
+                                                    onChange={
+                                                        handleSelectAllCheckboxChange
+                                                    }
                                                 />
-                                                <span>Select All Permission</span>
+                                                <span>
+                                                    Select All Permission
+                                                </span>
                                             </label>
                                         </div>
                                     </div>
@@ -192,47 +211,79 @@ function Add() {
                             </div>
                             <hr />
                             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4  gap-[50px]">
-                                {Object.entries(permissions).map(([objectName, items]) => (
-                                    <div key={objectName} className="flex gap-[15px] p-[16px] flex-col xl:flex-col rounded-lg permission-card shadow-md">
-                                        <div className="mb-5">
-                                            {/* <h5 className="font-semibold text-lg dark:text-white-light">Group Name</h5> */}
-                                            <div className="space-y-2 pt-3">
-                                                <div>
-                                                    <label className="inline-flex">
-                                                        <input
-                                                            type="checkbox"
-                                                            className="form-checkbox text-dark rounded-full"
-                                                            checked={checkedItems[objectName] || false}
-                                                            onChange={() => handleObjectCheckboxChange(objectName)}
-                                                        />
-                                                        {/* <span>{objectName}</span> */} <strong className="text-[17px] uppercase font-semibold">{objectName}</strong>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div>
-                                            {items.map((item, itemIndex) => (
-                                                <div key={itemIndex} >
-                                                    <div className="mb-5">
-                                                        <div className="space-y-2 pt-3">
-                                                            <div>
-                                                                <label className="inline-flex">
-                                                                    <input
-                                                                        type="checkbox"
-                                                                        className="form-checkbox text-dark rounded-full"
-                                                                        checked={checkedItems[item.name] || false}
-                                                                        onChange={() => handleItemCheckboxChange(item.name)}
-                                                                    />
-                                                                    <span>{item.name}</span>
-                                                                </label>
-                                                            </div>
-                                                        </div>
+                                {Object.entries(permissions).map(
+                                    ([objectName, items]) => (
+                                        <div
+                                            key={objectName}
+                                            className="flex gap-[15px] p-[16px] flex-col xl:flex-col rounded-lg permission-card shadow-md"
+                                        >
+                                            <div className="mb-5">
+                                                {/* <h5 className="font-semibold text-lg dark:text-white-light">Group Name</h5> */}
+                                                <div className="space-y-2 pt-3">
+                                                    <div>
+                                                        <label className="inline-flex">
+                                                            <input
+                                                                type="checkbox"
+                                                                className="form-checkbox text-dark rounded-full"
+                                                                checked={
+                                                                    checkedItems[
+                                                                        objectName
+                                                                    ] || false
+                                                                }
+                                                                onChange={() =>
+                                                                    handleObjectCheckboxChange(
+                                                                        objectName
+                                                                    )
+                                                                }
+                                                            />
+                                                            {/* <span>{objectName}</span> */}{" "}
+                                                            <strong className="text-[17px] uppercase font-semibold">
+                                                                {objectName}
+                                                            </strong>
+                                                        </label>
                                                     </div>
                                                 </div>
-                                            ))}
+                                            </div>
+                                            <div>
+                                                {items.map(
+                                                    (item, itemIndex) => (
+                                                        <div key={itemIndex}>
+                                                            <div className="mb-5">
+                                                                <div className="space-y-2 pt-3">
+                                                                    <div>
+                                                                        <label className="inline-flex">
+                                                                            <input
+                                                                                type="checkbox"
+                                                                                className="form-checkbox text-dark rounded-full"
+                                                                                checked={
+                                                                                    checkedItems[
+                                                                                        item
+                                                                                            .name
+                                                                                    ] ||
+                                                                                    false
+                                                                                }
+                                                                                onChange={() =>
+                                                                                    handleItemCheckboxChange(
+                                                                                        item.name
+                                                                                    )
+                                                                                }
+                                                                            />
+                                                                            <span>
+                                                                                {
+                                                                                    item.name
+                                                                                }
+                                                                            </span>
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    )
+                                                )}
+                                            </div>
                                         </div>
-                                    </div>
-                                ))}
+                                    )
+                                )}
                             </div>
                             <hr />
                             <button
@@ -250,7 +301,7 @@ function Add() {
 }
 
 Add.layout = (page) => (
-    <MainLayout children={page} title="Luminous E-Shop || Add Permission" />
+    <MainLayout children={page} title="Event reservation || Add Permission" />
 );
 
 export default Add;

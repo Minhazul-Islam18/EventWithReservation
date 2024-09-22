@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('event_bookings', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('user_id')->constrained('admins')->cascadeOnDelete();
             $table->foreignId('event_id')->constrained()->cascadeOnDelete();
             $table->json('seats'); // Store an array of seat numbers
             $table->timestamps();

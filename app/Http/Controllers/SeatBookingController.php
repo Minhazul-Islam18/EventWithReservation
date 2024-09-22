@@ -48,7 +48,7 @@ class SeatBookingController extends Controller
                 // Create the booking record after seats have been booked
                 EventBooking::create([
                     'event_id' => $eventId,
-                    'user_id' => 1 ?? auth()->id(),
+                    'user_id' => auth()->id(),
                     'seats' => json_encode($request->seats),
                 ]);
                 $event->decrement('available_seats', count($request->seats));

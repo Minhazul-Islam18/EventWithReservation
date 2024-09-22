@@ -14,7 +14,7 @@ function Add() {
     };
     function handleDeleteImage() {
         setSelectedImage(null);
-        reset({ icon: '' });
+        reset({ icon: "" });
     }
     function onSubmit(data) {
         // console.log(data);
@@ -49,7 +49,7 @@ function Add() {
                 <ul className="flex space-x-2 rtl:space-x-reverse">
                     <li>
                         <Link href="#" className="text-primary hover:underline">
-                           Language
+                            Language
                         </Link>
                     </li>
                     <li className="before:content-['/'] ltr:before:mr-2 rtl:before:ml-2">
@@ -65,10 +65,20 @@ function Add() {
                         </h5>
                     </div>
                     <div className="mb-5">
-                        <form className="space-y-5" onSubmit={handleSubmit(onSubmit)} method="post">
+                        <form
+                            className="space-y-5"
+                            onSubmit={handleSubmit(onSubmit)}
+                            method="post"
+                        >
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 <div>
-                                    <label> Name <span className="text-danger">*</span> </label>
+                                    <label>
+                                        {" "}
+                                        Name{" "}
+                                        <span className="text-danger">
+                                            *
+                                        </span>{" "}
+                                    </label>
                                     <input
                                         {...register("name")}
                                         type="text"
@@ -83,7 +93,13 @@ function Add() {
                                     )}
                                 </div>
                                 <div>
-                                    <label> Code <span className="text-danger">*</span> </label>
+                                    <label>
+                                        {" "}
+                                        Code{" "}
+                                        <span className="text-danger">
+                                            *
+                                        </span>{" "}
+                                    </label>
                                     <input
                                         {...register("code")}
                                         type="text"
@@ -99,7 +115,6 @@ function Add() {
                                 </div>
                             </div>
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-
                                 <div>
                                     <label>Icon</label>
                                     <input
@@ -111,9 +126,12 @@ function Add() {
                                 </div>
                                 <>
                                     {selectedImage && (
-                                        <div style={{ position: 'relative' }}>
-                                            <img className="rounded-lg max-w-[100px]" src={selectedImage}
-                                                alt="Selected Avatar" />
+                                        <div style={{ position: "relative" }}>
+                                            <img
+                                                className="rounded-lg max-w-[100px]"
+                                                src={selectedImage}
+                                                alt="Selected Avatar"
+                                            />
                                             <span
                                                 onClick={handleDeleteImage}
                                                 className="absolute top-[-15px] left-[23%] bg-white text-red-700 rounded-full p-1 shadow-[0_10px_20px_-10px_rgba(67,97,238,0.44)]"
@@ -161,7 +179,7 @@ function Add() {
 }
 
 Add.layout = (page) => (
-    <MainLayout children={page} title="Luminous-Ecommerce || Add Language" />
+    <MainLayout children={page} title="Event reservation || Add Language" />
 );
 
 export default Add;

@@ -1,10 +1,16 @@
 import React, { useState } from "react";
 import MainLayout from "../../Layout/Mainlayout";
-import Tippy from '@tippyjs/react';
+import Tippy from "@tippyjs/react";
 import { Link, router, usePage } from "@inertiajs/react";
 import { useForm } from "react-hook-form";
 function Add() {
-    const { register, handleSubmit, setValue, reset,formState: { errors } } = useForm();
+    const {
+        register,
+        handleSubmit,
+        setValue,
+        reset,
+        formState: { errors },
+    } = useForm();
     function onSubmit(data) {
         router.post("/admin/currency/store", data);
     }
@@ -37,7 +43,7 @@ function Add() {
                 <ul className="flex space-x-2 rtl:space-x-reverse">
                     <li>
                         <Link href="#" className="text-primary hover:underline">
-                         Currency
+                            Currency
                         </Link>
                     </li>
                     <li className="before:content-['/'] ltr:before:mr-2 rtl:before:ml-2">
@@ -53,49 +59,100 @@ function Add() {
                         </h5>
                     </div>
                     <div className="mb-5">
-                        <form className="space-y-5" onSubmit={handleSubmit(onSubmit)} method="post">
+                        <form
+                            className="space-y-5"
+                            onSubmit={handleSubmit(onSubmit)}
+                            method="post"
+                        >
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 <div>
-                                    <label> Name <span className="text-danger">*</span> </label>
+                                    <label>
+                                        {" "}
+                                        Name{" "}
+                                        <span className="text-danger">
+                                            *
+                                        </span>{" "}
+                                    </label>
                                     <input
-                                        {...register("name", {required: "Unit Name Is required"})}
+                                        {...register("name", {
+                                            required: "Unit Name Is required",
+                                        })}
                                         type="text"
                                         className="form-input"
                                         placeholder="Enter Unit Name"
                                     />
-                                    {errors.name && <p className="text-red-600 pt-2">{errors.name.message}</p>}
+                                    {errors.name && (
+                                        <p className="text-red-600 pt-2">
+                                            {errors.name.message}
+                                        </p>
+                                    )}
                                 </div>
                                 <div>
-                                    <label> ISO Code <span className="text-danger">*</span> </label>
+                                    <label>
+                                        {" "}
+                                        ISO Code{" "}
+                                        <span className="text-danger">
+                                            *
+                                        </span>{" "}
+                                    </label>
                                     <input
-                                        {...register("iso", {required: "Unit Name Is required"})}
+                                        {...register("iso", {
+                                            required: "Unit Name Is required",
+                                        })}
                                         type="text"
                                         className="form-input"
                                         placeholder="Enter Unit Name"
                                     />
-                                    {errors.name && <p className="text-red-600 pt-2">{errors.name.message}</p>}
+                                    {errors.name && (
+                                        <p className="text-red-600 pt-2">
+                                            {errors.name.message}
+                                        </p>
+                                    )}
                                 </div>
                                 <div>
-                                    <label> Symbol <span className="text-danger">*</span> </label>
+                                    <label>
+                                        {" "}
+                                        Symbol{" "}
+                                        <span className="text-danger">
+                                            *
+                                        </span>{" "}
+                                    </label>
                                     <input
-                                        {...register("symbol", {required: "Unit Name Is required"})}
+                                        {...register("symbol", {
+                                            required: "Unit Name Is required",
+                                        })}
                                         type="text"
                                         className="form-input"
                                         placeholder="Enter Unit Name"
                                     />
-                                    {errors.name && <p className="text-red-600 pt-2">{errors.name.message}</p>}
+                                    {errors.name && (
+                                        <p className="text-red-600 pt-2">
+                                            {errors.name.message}
+                                        </p>
+                                    )}
                                 </div>
                                 <div>
-                                    <label> Conversation Rate <span className="text-danger">*</span> </label>
+                                    <label>
+                                        {" "}
+                                        Conversation Rate{" "}
+                                        <span className="text-danger">
+                                            *
+                                        </span>{" "}
+                                    </label>
                                     <input
-                                        {...register("converstion_rate", {required: "Unit Name Is required"})}
+                                        {...register("converstion_rate", {
+                                            required: "Unit Name Is required",
+                                        })}
                                         type="text"
                                         className="form-input"
                                         placeholder="Enter Unit Name"
                                     />
-                                    {errors.name && <p className="text-red-600 pt-2">{errors.name.message}</p>}
+                                    {errors.name && (
+                                        <p className="text-red-600 pt-2">
+                                            {errors.name.message}
+                                        </p>
+                                    )}
                                 </div>
-
                             </div>
                             <button
                                 type="submit"
@@ -112,7 +169,7 @@ function Add() {
 }
 
 Add.layout = (page) => (
-    <MainLayout children={page} title="Luminous-Ecommerce || Add Currency"/>
+    <MainLayout children={page} title="Event reservation || Add Currency" />
 );
 
 export default Add;

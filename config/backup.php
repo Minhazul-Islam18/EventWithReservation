@@ -210,7 +210,7 @@ return [
             'to' => 'lefob26388@nexxterp.com',
 
             'from' => [
-                'address' => env('MAIL_FROM_ADDRESS', 'sajjad.cse35@gmail.com'),
+                'address' => env('MAIL_FROM_ADDRESS', 'Event reservation.cse35@gmail.com'),
                 'name' => env('MAIL_FROM_NAME', 'Example'),
             ],
         ],

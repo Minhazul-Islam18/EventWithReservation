@@ -268,7 +268,7 @@ function Index() {
 Index.layout = (page) => (
     <MainLayout
         children={page}
-        title="Luminous E-Shop || Role & Permission List"
+        title="Event reservation || Role & Permission List"
     />
 );
 
