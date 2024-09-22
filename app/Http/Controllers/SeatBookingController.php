@@ -48,7 +48,7 @@ class SeatBookingController extends Controller
                 // Create the booking record after seats have been booked
                 EventBooking::create([
                     'event_id' => $eventId,
-                    'user_id' => 1 ?? auth()->id(),
+                    'user_id' => 1 ?? auth('user')->id(), //Static 1 passed for dev testing.
                     'seats' => json_encode($request->seats),
                 ]);
                 $event->decrement('available_seats', count($request->seats));
@@ -57,7 +57,6 @@ class SeatBookingController extends Controller
             // Return a successful response with the booked seats
             return to_route('admin.events.details', ['event' => $event->id])->with('success', 'Booking successfull');
         } catch (\Exception $e) {
-            dd($e->getMessage());
             // Handle the case where seats are already booked
             return back()->with(
                 'warning',

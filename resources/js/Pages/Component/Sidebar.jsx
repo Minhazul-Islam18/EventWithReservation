@@ -53,7 +53,7 @@ function Sidebar({ handleToggleSidebar }) {
             >
                 <div className="bg-white dark:bg-black h-full">
                     <div className="flex justify-between items-center px-4 py-3">
-                        <Link
+                        {/* <Link
                             href="/"
                             className="main-logo flex items-center shrink-0"
                         >
@@ -65,7 +65,7 @@ function Sidebar({ handleToggleSidebar }) {
                             <span className="text-xl ltr:ml-1.5 rtl:mr-1.5 font-semibold align-middle lg:inline dark:text-white-light">
                                 {t("LUMINOUS SHOP")}
                             </span>
-                        </Link>
+                        </Link> */}
                         <button
                             type="button"
                             className="11collapse-icon w-8 h-8 rounded-full flex items-center hover:bg-gray-500/10 dark:hover:bg-dark-light/10 dark:text-white-light transition duration-300 rtl:rotate-180"
